@@ -13,36 +13,34 @@
   <meta name="keywords" content="games, developer, development, programming, chase peck games, chase peck films, films, movies, videos, shorts, comedy, satire">
 </head><body id="intro" class="peckos-font" style="overflow-x: hidden;">
 <style>
-* {
-font-family: sans-serif;
-}
 p {
-font-size: 14px;
-margin: 8px 0;
-color: #888;
+    font-size: 14px;
+    margin: 8px 0;
+    color: #888;
 }
 .pcejs {
-padding-right: 0;
-margin-left: auto;
-margin-right: auto;
-display: block;
-text-align: center;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 div.pcejs-border {
-border: none;
+    border: none;
 }
 /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
 .pcejs-canvas {
-border: 0px none;
+    border: 0px none;
 }
 .pcejs-container {
-margin-top: 32px;
-text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* macplus has mouse integration, so we can hide the host mouse */
 .pcejs-container canvas {
-cursor: none;
+    cursor: none;
 }
 </style>
 <div class="pcejs pcejs-container">
@@ -52,7 +50,6 @@ cursor: none;
     </div>
 </div>
     
-<p class="pcejs">press esc + &uarr; to zoom in, esc + &darr; to zoom out</p>
 <script type="text/javascript" src="https://unpkg.com/pcejs-macplus@0.2.2/pcejs-macplus.umd.js"></script>
 <script type="text/javascript" src="https://unpkg.com/pcejs-util@0.2.2/pcejs-util.umd.js"></script>
 <script>
@@ -63,9 +60,10 @@ var loadingStatus = PCEJSUtil.loadingStatus(
 PCEJSMacplus({
     arguments: ['-c', 'pce-config.cfg', '-r'],
     autoloadFiles: [
-    'https://jamesfriend.com.au/pce-js/codepen/mac-plus.rom', // a macintosh rom file (you can use this one or any rom from an early macintosh eg. classic or earlier)
-    'https://jamesfriend.com.au/pce-js/codepen/hd1.qed', // a macintosh disk image (replace this file with your own)
-    'https://jamesfriend.com.au/pce-js/codepen/pce-config.cfg', // the PCE config file (edit and replace this file with your own)
+    '/pcejs/mac-plus.rom', // a macintosh rom file (you can use this one or any rom from an early macintosh eg. classic or earlier)
+    '/pcejs/hd1.img', // a macintosh disk image (replace this file with your own)
+    '/pcejs/pce-config.cfg', // the PCE config file (edit and replace this file with your own)
+    '/pcejs/hd2.img', 
     'https://unpkg.com/pcejs-macplus@latest/macplus-pcex.rom', // the PCE extension rom, from the pcejs-macplus package
     ],
     locateFile(filename) {
