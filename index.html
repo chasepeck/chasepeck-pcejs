@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="body-border">
+<head>
+  <title>chasepeck</title>
+  
+  <link rel="stylesheet" href="/stylesheets/stylesheet_default.css">
+  <link rel="icon" href="/assets/favicon.png" type="image/png">
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/its_web_man.webmanifest">
+  <meta charset="UTF-8">
+  <meta name="description" content="homepage of chase peck, game developer of organic games llc">
+  <meta name="keywords" content="games, developer, development, programming, chase peck games, chase peck films, films, movies, videos, shorts, comedy, satire">
+</head><body id="intro" class="peckos-font" style="overflow-x: hidden;">
+<style>
+* {
+font-family: sans-serif;
+}
+p {
+font-size: 14px;
+margin: 8px 0;
+color: #888;
+}
+.pcejs {
+padding-right: 0;
+margin-left: auto;
+margin-right: auto;
+display: block;
+text-align: center;
+}
+div.pcejs-border {
+border: none;
+}
+/* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+.pcejs-canvas {
+border: 0px none;
+}
+.pcejs-container {
+margin-top: 32px;
+text-align: center;
+}
+
+/* macplus has mouse integration, so we can hide the host mouse */
+.pcejs-container canvas {
+cursor: none;
+}
+</style>
+<div class="pcejs pcejs-container">
+    <div class="pcejs pcejs-loading-status">Downloading...</div>
+    <div class="pcejs-border">
+        <canvas class="pcejs pcejs-canvas" oncontextmenu="event.preventDefault()"></canvas>
+    </div>
+</div>
+    
+<p class="pcejs">press esc + &uarr; to zoom in, esc + &darr; to zoom out</p>
+<script type="text/javascript" src="https://unpkg.com/pcejs-macplus@0.2.2/pcejs-macplus.umd.js"></script>
+<script type="text/javascript" src="https://unpkg.com/pcejs-util@0.2.2/pcejs-util.umd.js"></script>
+<script>
+// add a load progress bar. not required, but good ux
+var loadingStatus = PCEJSUtil.loadingStatus(
+    document.querySelector('.pcejs-loading-status')
+);
+PCEJSMacplus({
+    arguments: ['-c', 'pce-config.cfg', '-r'],
+    autoloadFiles: [
+    'https://jamesfriend.com.au/pce-js/codepen/mac-plus.rom', // a macintosh rom file (you can use this one or any rom from an early macintosh eg. classic or earlier)
+    'https://jamesfriend.com.au/pce-js/codepen/hd1.qed', // a macintosh disk image (replace this file with your own)
+    'https://jamesfriend.com.au/pce-js/codepen/pce-config.cfg', // the PCE config file (edit and replace this file with your own)
+    'https://unpkg.com/pcejs-macplus@latest/macplus-pcex.rom', // the PCE extension rom, from the pcejs-macplus package
+    ],
+    locateFile(filename) {
+    // allows you to specify the absolute path to where the .wasm file is located (from the pcejs-macplus package)
+    return 'https://unpkg.com/pcejs-macplus@latest/' + filename;
+    },
+    print: console.log.bind(console),
+    printErr: console.warn.bind(console),
+    canvas: document.querySelector('.pcejs-canvas'),
+    monitorRunDependencies: function(remainingDependencies) {
+    loadingStatus.update(remainingDependencies);
+    },
+});
+</script>
