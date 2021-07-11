@@ -60,10 +60,10 @@ var loadingStatus = PCEJSUtil.loadingStatus(
 PCEJSMacplus({
     arguments: ['-c', 'pce-config.cfg', '-r'],
     autoloadFiles: [
-    '/pcejs/mac-plus.rom', // a macintosh rom file (you can use this one or any rom from an early macintosh eg. classic or earlier)
-    '/pcejs/hd1.img', // a macintosh disk image (replace this file with your own)
-    '/pcejs/pce-config.cfg', // the PCE config file (edit and replace this file with your own)
-    '/pcejs/hd2.img', 
+    './pcejs/mac-plus.rom', // a macintosh rom file (you can use this one or any rom from an early macintosh eg. classic or earlier)
+    './pcejs/hd1.img', // a macintosh disk image (replace this file with your own)
+    './pcejs/pce-config.cfg', // the PCE config file (edit and replace this file with your own)
+    './pcejs/hd2.img', 
     'https://unpkg.com/pcejs-macplus@latest/macplus-pcex.rom', // the PCE extension rom, from the pcejs-macplus package
     ],
     locateFile(filename) {
